@@ -38,44 +38,27 @@ def process_playlist(playlist):
                 else:
                     G[uri1][uri2]['weight'] += 1
 
-def print_playlist(playlist):
-    if pretty:
-        print("===", playlist["pid"], "===")
-        print(playlist["name"])
-        print("  followers", playlist["num_followers"])
-        print(
-            "  modified",
-            datetime.datetime.fromtimestamp(playlist["modified_at"]).strftime(
-                "%Y-%m-%d"
-            ),
-        )
-        print("  edits", playlist["num_edits"])
-        print()
-        if not compact:
-            for track in playlist["tracks"]:
-                print(
-                    "%3d %s - %s"
-                    % (track["pos"], track["track_name"], track["album_name"])
-                )
-            print()
-    else:
-        print(json.dumps(playlist, indent=4))
-
 def show_playlist(prefix, pid):
-    if pid >= 0 and pid < 1000000:
-        low = 1000 * int(pid / 1000)
-        high = low + 999
-        offset = pid - low
-        path = prefix + "/mpd.slice." + str(low) + "-" + str(high) + ".json"
-        if path not in cache:
-            f = codecs.open(path, "r", "utf-8")
-            js = f.read()
-            f.close()
-            playlist = json.loads(js)
-            cache[path] = playlist
+    low = 1000 * int(pid / 1000)
+    high = low + 999
+    offset = pid - low
+    path = prefix + "/mpd.slice." + str(low) + "-" + str(high) + ".json"
+    if path not in cache:
+        f = codecs.open(path, "r", "utf-8")
+        js = f.read()
+        f.close()
+        playlist_data = json.loads(js)
+        cache[path] = playlist_data
 
-        playlist = cache[path]["playlists"][offset]
+    playlist = cache[path]["playlists"][offset]
+    
+    # Check if playlist's last modification time is within Summer 2016
+    summer_2016_start = 1467331200
+    summer_2016_end = 1472687999
+    if summer_2016_start <= playlist["modified_at"] <= summer_2016_end:
         process_playlist(playlist)  # Update the graph with this playlist
+    else:
+        print(f"Playlist {playlist['pid']} is not from Summer 2016. Skipping...")
 
 def show_playlists_in_range(prefix, start, end):
     try:
@@ -90,10 +73,6 @@ def show_playlists_in_range(prefix, start, end):
     except ValueError:
         print("bad pid")
 
-
-def usage():
-    print(f"{sys.argv[0]} --path mpd --pretty --compact --raw pid")
-    print(f"{sys.argv[0]} --path mpd --pretty --compact --raw pid1-pid2")
 
 if __name__ == "__main__":
     args = sys.argv[1:]
@@ -140,5 +119,3 @@ if __name__ == "__main__":
         print(f"Graph saved in GraphML format as 'spotify_graph.graphml'. Saving took {duration:.2f} seconds.")
     else:
         usage()
-
-# After processing all playlists, you can use G for analysis or visualization
