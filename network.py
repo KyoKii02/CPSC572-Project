@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
         # Save the graph
         save_file_name = "spotify_AugWeek1.graphml"
-        nx.write_graphml(G, "save_file_name")
+        nx.write_graphml(G, save_file_name)
 
         end_time = time.time()  # End the timer
         duration = end_time - start_time
