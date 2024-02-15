@@ -108,8 +108,9 @@ if __name__ == "__main__":
         start_time = time.time()  # Start the timer
 
         # Save the graph
-        filter_and_save_graph(G, "spotify_AugWeek1.graphml")
+        save_file_name = "spotify_AugWeek1.graphml"
+        filter_and_save_graph(G, save_file_name)
 
         end_time = time.time()  # End the timer
         duration = end_time - start_time
-        print(f"Graph saved in GraphML format as 'spotify_graph.graphml'. Saving took {duration:.2f} seconds.")
+        print(f"Graph saved in GraphML format as '{save_file_name}'. Saving took {duration:.2f} seconds.")
