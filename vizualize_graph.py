@@ -1,4 +1,5 @@
 # visualize_graph.py
+import sys
 import networkx as nx
 import matplotlib.pyplot as plt
 import time
@@ -36,7 +37,19 @@ def visualize_graph(G, output_file, edge_weight_threshold=1):
     plt.show()
 
 if __name__ == "__main__":
-    graph_file = "spotify_AugWeek1.graphml"
+    if len(sys.argv) != 2:
+        print("Usage: python vizualize_graph.py <filename>")
+        sys.exit(1)
+    try:
+        graph_file = sys.argv[1]
+        with open(graph_file, 'r'):
+            pass
+    except FileNotFoundError:
+        print(f"File not found.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        sys.exit(1)
     output_file = "spotify_playlist_graph.png"  # Specify the output file name
     G = load_graph(graph_file)
     visualize_graph(G, output_file)
