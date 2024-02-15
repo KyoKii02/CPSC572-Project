@@ -6,8 +6,6 @@ import networkx as nx
 import time
 import matplotlib.pyplot as plt
 
-pretty = True
-compact = False
 cache = {}
 G = nx.Graph()  # Initialize an undirected graph for the network
 
@@ -57,7 +55,7 @@ def show_playlist(prefix, pid):
     summer_2016_end = 1472687999
     if summer_2016_start <= playlist["modified_at"] <= summer_2016_end:
         process_playlist(playlist)  # Update the graph with this playlist
-    else:
+    elif pid % 100 == 0:
         print(f"Playlist {playlist['pid']} is not from Summer 2016. Skipping...")
 
 def show_playlists_in_range(prefix, start, end):
@@ -82,28 +80,17 @@ if __name__ == "__main__":
 
     while args:
         arg = args.pop(0)
-        if arg == "--pretty":
-            pretty = True
-        elif arg == "--path":
+        if arg == "--path":
             path = args.pop(0)
-        elif arg == "--compact":
-            compact = True
-        elif arg == "--help":
-            usage()
-        elif arg == "--raw":
-            pretty = False
         elif "-" in arg:
             fields = arg.split("-")
             if len(fields) == 2:
                 start_pid = fields[0]
                 end_pid = fields[1]
         else:
-            try:
-                pid = int(arg)
-                start_pid = pid
-                end_pid = pid
-            except ValueError:
-                usage()
+            pid = int(arg)
+            start_pid = pid
+            end_pid = pid
 
     if path and start_pid is not None and end_pid is not None:
         show_playlists_in_range(path, start_pid, end_pid)
@@ -117,5 +104,3 @@ if __name__ == "__main__":
         end_time = time.time()  # End the timer
         duration = end_time - start_time
         print(f"Graph saved in GraphML format as 'spotify_graph.graphml'. Saving took {duration:.2f} seconds.")
-    else:
-        usage()
