@@ -71,16 +71,6 @@ def show_playlists_in_range(prefix, start, end):
     except ValueError:
         print("bad pid")
 
-def filter_and_save_graph(G, output_file, edge_weight_threshold=1):
-    # Filter the graph to include edges above a certain weight threshold
-    print(f"Filtering graph to include only edges with weight > {edge_weight_threshold}...")
-    start_time = time.time()
-    edges_to_keep = [(u, v) for u, v, d in G.edges(data=True) if d['weight'] > edge_weight_threshold]
-    H = G.edge_subgraph(edges_to_keep).copy()
-    print(f"Filtered graph has {H.number_of_nodes()} nodes and {H.number_of_edges()} edges. Took {time.time() - start_time:.2f} seconds.")
-    nx.write_graphml(H, output_file)
-    print(f"Filtered graph saved to {output_file}")
-
 if __name__ == "__main__":
     args = sys.argv[1:]
     path = None
@@ -109,7 +99,7 @@ if __name__ == "__main__":
 
         # Save the graph
         save_file_name = "spotify_AugWeek1.graphml"
-        filter_and_save_graph(G, save_file_name)
+        nx.write_graphml(G, "save_file_name")
 
         end_time = time.time()  # End the timer
         duration = end_time - start_time
