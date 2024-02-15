@@ -1,7 +1,6 @@
 import sys
 import json
 import codecs
-import datetime
 import networkx as nx
 import time
 import matplotlib.pyplot as plt
@@ -50,13 +49,14 @@ def show_playlist(prefix, pid):
 
     playlist = cache[path]["playlists"][offset]
     
-    # Check if playlist's last modification time is within Summer 2016
-    summer_2016_start = 1467331200
-    summer_2016_end = 1472687999
-    if summer_2016_start <= playlist["modified_at"] <= summer_2016_end:
+    # Check if playlist's last modification time is within the first week of August 2016
+    august_1_2016_start = 1470009600
+    august_7_2016_end = 1470614399
+    if august_1_2016_start <= playlist["modified_at"] <= august_7_2016_end:
+        print(f"Playlist {playlist['pid']} is from the first week of August 2016.")
         process_playlist(playlist)  # Update the graph with this playlist
-    elif pid % 100 == 0:
-        print(f"Playlist {playlist['pid']} is not from Summer 2016. Skipping...")
+
+
 
 def show_playlists_in_range(prefix, start, end):
     try:
@@ -66,11 +66,20 @@ def show_playlists_in_range(prefix, start, end):
         if istart <= iend and istart >= 0 and iend <= 1000000:
             for i, pid in enumerate(range(istart, iend), start=1):
                 show_playlist(prefix, pid)
-                if i % 100 == 0:  # print progress every 100 playlists
+                if i % 1000 == 0:  # print progress every 100 playlists
                     print(f"Processed {i}/{total_playlists} playlists.")
     except ValueError:
         print("bad pid")
 
+def filter_and_save_graph(G, output_file, edge_weight_threshold=1):
+    # Filter the graph to include edges above a certain weight threshold
+    print(f"Filtering graph to include only edges with weight > {edge_weight_threshold}...")
+    start_time = time.time()
+    edges_to_keep = [(u, v) for u, v, d in G.edges(data=True) if d['weight'] > edge_weight_threshold]
+    H = G.edge_subgraph(edges_to_keep).copy()
+    print(f"Filtered graph has {H.number_of_nodes()} nodes and {H.number_of_edges()} edges. Took {time.time() - start_time:.2f} seconds.")
+    nx.write_graphml(H, output_file)
+    print(f"Filtered graph saved to {output_file}")
 
 if __name__ == "__main__":
     args = sys.argv[1:]
@@ -99,7 +108,7 @@ if __name__ == "__main__":
         start_time = time.time()  # Start the timer
 
         # Save the graph
-        nx.write_graphml(G, "spotify_graph.graphml")
+        filter_and_save_graph(G, "spotify_AugWeek1.graphml")
 
         end_time = time.time()  # End the timer
         duration = end_time - start_time
