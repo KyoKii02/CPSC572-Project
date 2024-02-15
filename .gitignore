@@ -1000,3 +1000,5 @@ data/mpd.slice.997000-997999.json
 data/mpd.slice.998000-998999.json
 data/mpd.slice.999000-999999.json
 spotify_million_playlist_dataset.zip
+spotify_graph.graphml
+spotify_playlist_graph.png
