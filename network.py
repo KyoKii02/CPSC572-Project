@@ -107,7 +107,7 @@ if __name__ == "__main__":
         edges_to_check = list(G.edges(data=True))
 
         for u, v, data in edges_to_check:
-            if data['weight'] < 3:
+            if data['weight'] <= 5:
                 G.remove_edge(u, v)  # Remove edge if its weight is below the threshold
 
         print(f"Remaining edges: {G.number_of_edges()}")
@@ -116,8 +116,9 @@ if __name__ == "__main__":
         nodes_to_check = list(G.nodes())
 
         for node in nodes_to_check:
-            if G.degree(node) <= 1:
-                G.remove_node(node)  # Remove the node if its degree is 1
+            if G.degree(node) == 0:
+                G.remove_node(node)  # Clean the remaining "island" nodes
+
         print(f"Remaining nodes: {G.number_of_nodes()}")
         # Save the graph
         save_file_name = "spotify_AugWeek1.graphml"
