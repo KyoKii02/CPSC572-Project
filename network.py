@@ -19,10 +19,13 @@ def process_playlist(playlist):
         album_name = track['album_name']
         pos = track['pos']
 
-        # Add node with attributes if it doesn't exist
+        # Add node with attributes if it doesn't exist, initialize pos as a list
         if not G.has_node(uri):
             G.add_node(uri, artist_name=artist_name, track_name=track_name,
-                       duration_ms=duration_ms, album_name=album_name, pos=pos)
+                       duration_ms=duration_ms, album_name=album_name, pos=[pos])
+        else:
+            # If the node exists, append the new position to the existing list
+            G.nodes[uri]['pos'].append(pos)
         
     # Create edges with weights
     for i, track1 in enumerate(tracks):
@@ -96,8 +99,10 @@ if __name__ == "__main__":
         
         print("Processing complete. Starting to save the graph...")
         start_time = time.time()  # Start the timer
-
-        # Save the graph
+        for node in G.nodes:
+            # Convert the list of positions to a string
+            G.nodes[node]['pos'] = ','.join(map(str, G.nodes[node]['pos']))
+                # Save the graph
         save_file_name = "spotify_AugWeek1.graphml"
         nx.write_graphml(G, save_file_name)
 
