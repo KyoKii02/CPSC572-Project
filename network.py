@@ -102,7 +102,24 @@ if __name__ == "__main__":
         for node in G.nodes:
             # Convert the list of positions to a string
             G.nodes[node]['pos'] = ','.join(map(str, G.nodes[node]['pos']))
-                # Save the graph
+
+        # Create a list of edges to iterate over, so you're not modifying the graph while iterating
+        edges_to_check = list(G.edges(data=True))
+
+        for u, v, data in edges_to_check:
+            if data['weight'] < 3:
+                G.remove_edge(u, v)  # Remove edge if its weight is below the threshold
+
+        print(f"Remaining edges: {G.number_of_edges()}")
+
+        # Create a list of nodes to check to avoid modifying the graph while iterating
+        nodes_to_check = list(G.nodes())
+
+        for node in nodes_to_check:
+            if G.degree(node) <= 1:
+                G.remove_node(node)  # Remove the node if its degree is 1
+        print(f"Remaining nodes: {G.number_of_nodes()}")
+        # Save the graph
         save_file_name = "spotify_AugWeek1.graphml"
         nx.write_graphml(G, save_file_name)
 
