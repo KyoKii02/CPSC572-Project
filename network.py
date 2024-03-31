@@ -38,6 +38,7 @@ def process_playlist(playlist):
                 else:
                     G[uri1][uri2]['weight'] += 1
 
+#This function is adapted from spotify's show.py
 def show_playlist(prefix, pid):
     low = 1000 * int(pid / 1000)
     high = low + 999
@@ -60,7 +61,7 @@ def show_playlist(prefix, pid):
         process_playlist(playlist)  # Update the graph with this playlist
 
 
-
+#This function is adapted from spotify's show.py
 def show_playlists_in_range(prefix, start, end):
     try:
         istart = int(start)
