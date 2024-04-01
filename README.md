@@ -1,5 +1,9 @@
-# CPSC572-Project
+# Network Analysis In Spotify Playlist Data
+![viz1](https://github.com/KyoKii02/CPSC572-Project/assets/147207215/3d332caf-f29a-4461-b631-2e422183e5aa)
+To more fully understand the interconnectedness of humanity’s experience with music, an exploration into the public “Spotify Million Playlist Dataset” from AiCrowd was conducted using a network science approach. This paper seeks to examine the commonalities between songs that are grouped in playlists, to understand the psychological factors that contribute to playlist construction and the proliferation of popular songs. A network model was constructed in which songs that occur together on playlists are linked, after which several analyses were conducted to explore communities present across playlists and factors that are correlated with the popularity of a song. The network structure reveals a highly clustered network, where communities were found that revealed insights into the underlying organization of the network, showing that popular genres, eras of music, artists, and cultural and thematic associations that can lead to collective listening, play a significant role in influencing how playlists are created. Furthermore, it was found that more popular songs tend to be concentrated towards the beginning of playlists, and are of short duration. The study was limited by computing power, and thus the data sample was reduced to a week of playlists, where future work could reveal more about how networks of playlists evolve through time, reflecting and being shaped by the culture of the world. 
+
 Contains Files &amp; Data related to the Final Project
 network.py, graph_stats.ipynb, community_detection.py contain the bulk of our original work,
 the raminder is from the dataset source below.
 Dataset Source: https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge/dataset_files
+
