@@ -1,4 +1,4 @@
-# visualize_graph.py
+# This code was used in the network construction process to validate that the network was being created as explected.
 import sys
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -23,7 +23,7 @@ def visualize_graph(G, output_file, edge_weight_threshold=1):
     end_time = time.time()
     print(f"Layout computed in {end_time - start_time:.2f} seconds.")
 
-    print("Drawing graph... This might take a while for large graphs.")
+    print("Drawing graph...")
     start_time = time.time()
     nx.draw(G, pos, node_size=20, edge_color='gray', alpha=0.4, with_labels=False)
     end_time = time.time()
@@ -33,7 +33,6 @@ def visualize_graph(G, output_file, edge_weight_threshold=1):
     plt.savefig(output_file)
     print(f"Graph visualization saved to {output_file}")
 
-    # Display the graph
     plt.show()
 
 if __name__ == "__main__":
@@ -50,6 +49,6 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
         sys.exit(1)
-    output_file = "spotify_playlist_graph.png"  # Specify the output file name
+    output_file = "spotify_playlist_graph.png"
     G = load_graph(graph_file)
     visualize_graph(G, output_file)
