@@ -8,7 +8,7 @@ This project delves into the public **Spotify Million Playlist Dataset** provide
 
 ## Research Paper
 
-For a comprehensive understanding of our findings and methodologies, refer to our research paper: [Research Paper](https://github.com/KyoKii02/CPSC572-Project/blob/main/Research%20Paper.pdf).
+For a comprehensive understanding of our findings and methodologies, refer to our [Research Paper](https://github.com/KyoKii02/CPSC572-Project/blob/main/Research%20Paper.pdf).
 A summary can be found below.
 
 ### Objectives
