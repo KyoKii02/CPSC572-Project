@@ -6,6 +6,11 @@
 
 This project delves into the public **Spotify Million Playlist Dataset** provided by AiCrowd, utilizing a network science approach to decipher the interconnectedness of humanity's musical experiences. Our goal is to explore the underlying commonalities among songs grouped in playlists, aiming to shed light on the psychological factors influencing playlist construction and the dynamics behind the popularity of certain tracks.
 
+## Research Paper
+
+For a comprehensive understanding of our findings and methodologies, refer to our research paper: [Research Paper](https://github.com/KyoKii02/CPSC572-Project/blob/main/Research%20Paper.pdf).
+A summary can be found below.
+
 ### Objectives
 
 - Construct a network model where songs co-occurring in playlists are interconnected.
