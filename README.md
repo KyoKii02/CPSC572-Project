@@ -26,13 +26,23 @@ The study was constrained by computational resources, limiting our analysis to a
 
 ## Repository Contents
 
-This repository contains files and data related to the final project:
-- `network.py`
-- `graph_stats.ipynb`
-- `community_detection.py`
+This repository contains files and data related to the final project, offering insights into the network analysis of Spotify playlist data. Below is a detailed description of each file and its purpose:
+
+- `Community_detection.ipynb`: Performs community detection and analysis to uncover distinct groups within the playlists that share common characteristics.
+
+- `Graph_stats.ipynb`: Computes basic statistics, null models, and conducts deeper analysis of the dataset to understand the structural properties of the network.
+
+- `graph_stats_Poly_regression.ipynb`: An experiment utilizing polynomial regression based on the analyses performed in `Graph_stats.ipynb`, aimed at uncovering more complex relationships within the data.
+
+- `Vizualize_graph.py`: Provides a simple yet effective visualization tool to validate the construction of the network, helping to visually inspect the network's structure and the connections between nodes.
+
+- `network.py`: The main code for constructing the network model where songs co-occurring in playlists are interconnected. This file lays the foundation for the network analysis.
+
+- `spotify_AugWeek1.graphml`: The output file from `network.py`, representing the network model constructed from a week's worth of Spotify playlist data.
+
+- `Network_with_communities.graphml`: An enhanced version of the `spotify_AugWeek1.graphml` file with community detection applied, showcasing the identified communities within the network.
+
+These documents and files constitute the bulk of our original work. The analysis and visualization provided by these tools contribute significantly to our understanding of the complex dynamics within Spotify playlists and the factors influencing song popularity and playlist construction.
+
 
 These documents constitute our original work, with the remaining data sourced from the [Spotify Million Playlist Dataset Challenge](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge/dataset_files) hosted by AiCrowd.
-
-## Dataset Source
-
-For further information on the dataset used for this project, please visit the [Spotify Million Playlist Dataset Challenge](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge/dataset_files) on AiCrowd.
