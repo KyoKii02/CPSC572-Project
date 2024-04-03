@@ -1,9 +1,38 @@
 # Network Analysis In Spotify Playlist Data
-![viz1](https://github.com/KyoKii02/CPSC572-Project/assets/147207215/3d332caf-f29a-4461-b631-2e422183e5aa)
-To more fully understand the interconnectedness of humanity’s experience with music, an exploration into the public “Spotify Million Playlist Dataset” from AiCrowd was conducted using a network science approach. This paper seeks to examine the commonalities between songs that are grouped in playlists, to understand the psychological factors that contribute to playlist construction and the proliferation of popular songs. A network model was constructed in which songs that occur together on playlists are linked, after which several analyses were conducted to explore communities present across playlists and factors that are correlated with the popularity of a song. The network structure reveals a highly clustered network, where communities were found that revealed insights into the underlying organization of the network, showing that popular genres, eras of music, artists, and cultural and thematic associations that can lead to collective listening, play a significant role in influencing how playlists are created. Furthermore, it was found that more popular songs tend to be concentrated towards the beginning of playlists, and are of short duration. The study was limited by computing power, and thus the data sample was reduced to a week of playlists, where future work could reveal more about how networks of playlists evolve through time, reflecting and being shaped by the culture of the world. 
 
-Contains Files &amp; Data related to the Final Project
-network.py, graph_stats.ipynb, community_detection.py contain the bulk of our original work,
-the raminder is from the dataset source below.
-Dataset Source: https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge/dataset_files
+![Visualization of Network Analysis](https://github.com/KyoKii02/CPSC572-Project/assets/147207215/3d332caf-f29a-4461-b631-2e422183e5aa)
 
+## Overview
+
+This project delves into the public **Spotify Million Playlist Dataset** provided by AiCrowd, utilizing a network science approach to decipher the interconnectedness of humanity's musical experiences. Our goal is to explore the underlying commonalities among songs grouped in playlists, aiming to shed light on the psychological factors influencing playlist construction and the dynamics behind the popularity of certain tracks.
+
+### Objectives
+
+- Construct a network model where songs co-occurring in playlists are interconnected.
+- Perform comprehensive analyses to uncover playlist communities and the traits correlated with song popularity.
+- Investigate the influence of genres, eras, artists, and cultural themes on playlist creation.
+
+## Findings
+
+Our analysis revealed a highly clustered network structure, showcasing:
+- Distinct communities within playlists reflecting popular genres, music eras, artists, and thematic associations.
+- A tendency for more popular songs to be positioned at the beginning of playlists and to have shorter durations.
+
+These insights not only highlight the significant role of cultural and thematic associations in playlist creation but also hint at strategic song placement and duration in capturing listener attention.
+
+## Limitations and Future Work
+
+The study was constrained by computational resources, limiting our analysis to a week's worth of playlist data. Future investigations could expand on this by exploring how playlist networks evolve over time, offering deeper insights into the global music culture's influence and evolution.
+
+## Repository Contents
+
+This repository contains files and data related to the final project:
+- `network.py`
+- `graph_stats.ipynb`
+- `community_detection.py`
+
+These documents constitute our original work, with the remaining data sourced from the [Spotify Million Playlist Dataset Challenge](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge/dataset_files) hosted by AiCrowd.
+
+## Dataset Source
+
+For further information on the dataset used for this project, please visit the [Spotify Million Playlist Dataset Challenge](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge/dataset_files) on AiCrowd.
